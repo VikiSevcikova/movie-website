@@ -1,0 +1,59 @@
+.pad-lr-20{
+    padding: 0px 20px;
+}
+#bg-fade{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 30px;
+    z-index: -1;
+    overflow: hidden;
+    img{
+        width: 100%;
+        -webkit-mask-image: linear-gradient(to top, transparent 0%, black 100%);
+        mask-image: linear-gradient(to top, transparent 0%, black 100%);
+    }
+}
+.fade-in{
+    opacity: 0.9;
+}
+.movie-image-info{
+    padding-top: 400px;
+    .trailer-link{
+        padding: 20px 0px;
+    }
+    .tickets-btn{
+        margin-top: 20px;
+        width: 50%;
+        text-transform: uppercase;
+    }
+        
+}
+
+@media (min-width: 992px) {   
+    .image-sm-dev{
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    #bg-fade{
+        margin-top: 50px;
+    }
+    .movie-image-info{
+        padding-top: 250px;
+        .image-lg-dev{
+            display: none;
+        }
+        .image-sm-dev{
+            display: inline-block;
+        }
+        .tickets-btn{
+            margin: 10px 0px;
+            width: 100%;
+        }
+    }
+  
+}
+
+
