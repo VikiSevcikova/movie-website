@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Carousel from '../components/content-components/Carousel';
-import MovieGrid from '../components/content-components/MovieGrid';
 import Slider from '../components/content-components/Slider';
 import '../scss/App.scss';
 
@@ -10,13 +9,13 @@ const Home = () => {
         <Carousel />
         <div className="container content">
           <div className="row"> 
-            <Slider category='now_playing'/>
+            <Slider key='now_playing' category='now_playing'/>
         
-            <Slider category='popular'/>
+            <Slider key='popular' category='popular'/>
         
-            <Slider category='top_rated'/>
+            <Slider key='top_rated' category='top_rated'/>
         
-            <Slider category='upcoming'/>
+            <Slider key='upcoming' category='upcoming'/>
           </div>
         </div>
       </>

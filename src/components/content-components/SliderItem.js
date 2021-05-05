@@ -1,9 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import mk from '../../images/mk.jpg';
-
-
 const SliderItem = ({movie}) => {
     return (
         <div className='item'>

@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 
 const Navbar = () => {
+    const [searchValue, setSearchValue] = useState('');
+    
+    const inputChangeHandler = (e) => {
+        setSearchValue(e.target.value);
+    }
+    
     return(
         <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
                 <div className="container">
@@ -15,22 +21,20 @@ const Navbar = () => {
                                 <Link to='/' className="nav-link active" aria-current="page">Home</Link>
                             </li>
                             <li className="nav-item">
-                            <a className="nav-link" href="#">Link</a>
+                                <Link to='/category/now_playing' className="nav-link">Now Playing</Link>
                             </li>
-                            <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Another action</a></li>
-                                <li><hr className="dropdown-divider"/></li>
-                                <li><a className="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                            <li className="nav-item">
+                                <Link to='/category/popular' className="nav-link">Popular</Link>
+                            </li> 
+                            <li className="nav-item">
+                                <Link to='/category/top_rated' className="nav-link">Top Rated</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to='/category/upcoming' className="nav-link">Upcoming</Link>
                             </li>
                         </ul>
-                        <form className="d-flex">
-                            <input className="form-control bg-dark me-2" type="search" placeholder="Search" aria-label="Search" />
+                        <form action={`/search/${searchValue}`} className="d-flex">
+                            <input onChange={inputChangeHandler} className="form-control bg-dark me-2" type="search" placeholder="Search" aria-label="Search" />
                             <button className="btn btn-outline-primary" type="submit"><i className="fas fa-search"></i></button>
                         </form>
                     </div>
