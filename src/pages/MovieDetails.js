@@ -13,22 +13,13 @@ const MovieDetails = () => {
 
     const { movieID } = useParams();
 
- 
-
-    useEffect(() => {
-        getMovie(movieID);
-        getVideo(movieID);
-        getDirectorAndCast(movieID);		   
-        getSimilarMovies(movieID);
-    }, []);
-
     //when the user is on movie details page and click on similar movie
     useEffect(() => {
         getMovie(movieID);
         getVideo(movieID);
         getDirectorAndCast(movieID);		   
         getSimilarMovies(movieID);
-    }, [movieID]);
+    },[movieID]);
 
     const formatDate = (date) => {
         const d = new Date(date);
@@ -121,7 +112,7 @@ const MovieDetails = () => {
   return (
       <div className='container content'>
           <div id='bg-fade'>
-            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className="" alt={movie.title}/>
+            <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : ''} className="" alt={movie.title}/>
           </div>
           <div className='row movie-image-info'>
             <div className='col-xs-12 col-sm-3 col-md-3 image-lg-dev'>
@@ -149,7 +140,7 @@ const MovieDetails = () => {
                         </div>
                         {video ? 
                             <div>
-                                <a className='trailer-link' href='#' data-bs-toggle="modal" data-bs-target="#trailer" >
+                                <a className='trailer-link' href='' data-bs-toggle="modal" data-bs-target="#trailer" >
                                     <i className='fa fa-play-circle'></i> Trailer
                                 </a>
                                 <div id="trailer" className="modal fade">
@@ -203,7 +194,7 @@ const MovieDetails = () => {
             {similarMovies.length  ? 
                 <Slider category='similar' movieID={movieID}/>
             : ''
-          }
+            }
           </div>
       </div>
   );

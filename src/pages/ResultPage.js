@@ -32,7 +32,7 @@ const ResultPage = () => {
                 if(currentPage === 1){
                     setResults(data.results);
                 }else{
-                    setResults([... results, ...data.results]);
+                    setResults([...results, ...data.results]);
                 }
                 setTotalPages(data.total_pages);
                 setTotalResults(data.total_results);

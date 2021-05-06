@@ -120,22 +120,7 @@ body{
         overflow: auto;
         margin-bottom: 20px;
         padding: 0;
-        z-index: 1;
-        &.grab {
-            cursor: move;
-            cursor: grab;
-            cursor: -moz-grab;
-            cursor: -webkit-grab;
-            .thumbnails-list{
-                cursor: pointer;
-            }
-            &:active {
-                cursor: grabbing;
-                cursor: -moz-grabbing;
-                cursor: -webkit-grabbing;
-            }
-        }
-    
+        z-index: 1;   
         
         .item{
             margin: 10px 20px 10px 0;

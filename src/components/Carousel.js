@@ -35,24 +35,24 @@ const Carousel = () => {
                 <div className="carousel-indicators">
                     {popular.map((p, i) => {
                         if(i===0){
-                            return <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={i} className="active" aria-current="true" aria-label={p.id}></button>
+                            return <button key={p.id} type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={i} className="active" aria-current="true" aria-label={p.id}></button>
                         }else{
-                            return <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={i} aria-label={p.id}></button>
+                            return <button key={p.id} type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={i} aria-label={p.id}></button>
                         }
                     })}
                 </div>
                 <div className="carousel-inner">
                     {popular.map((p, i) => {
                         if(i===0){
-                            return  <div className="carousel-item active">
+                            return  <div key={p.id} className="carousel-item active">
                                         <div className='carousel-movie-info'>
                                             <h1>{p.title}</h1>
-                                            <Link to={`/movie/${p.id}`} className='btn'> More Details </Link>
+                                            <Link  to={`/movie/${p.id}`} className='btn'> More Details </Link>
                                         </div>
                                         <img src={`https://image.tmdb.org/t/p/w500${p.poster_path}`} className="d-block w-100" alt="..."/>
                                     </div>
                         }else{
-                            return  <div className="carousel-item">
+                            return  <div key={p.id} className="carousel-item">
                                         <div className='carousel-movie-info'>
                                             <h1>{p.title}</h1>
                                             <Link to={`/movie/${p.id}`} className='btn'> More Details </Link>
