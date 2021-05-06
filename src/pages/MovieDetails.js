@@ -9,7 +9,6 @@ const MovieDetails = () => {
     const [video, setVideo] = useState({});
     const [director, setDirector] = useState([]);
     const [actors, setActors] = useState([]);			 
-    const [similarMovies, setSimilarMovies] = useState([]);
 
     const { movieID } = useParams();
 
@@ -18,7 +17,6 @@ const MovieDetails = () => {
         getMovie(movieID);
         getVideo(movieID);
         getDirectorAndCast(movieID);		   
-        getSimilarMovies(movieID);
     },[movieID]);
 
     const formatDate = (date) => {
@@ -60,24 +58,6 @@ const MovieDetails = () => {
             const filteredCrew = crew.filter(member => member.job === 'Director');
             setActors(filteredCast);
             setDirector(filteredCrew);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    }
-
-    const getSimilarMovies = (id) => {
-        const url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${API_KEY}&language=en-US`
-        fetch(url)
-        .then(response => {
-            if(response.status !== 200){
-                console.log('There is an issue. Status code:' + response.status);
-                return;
-            }
-            return response.json();
-        })
-        .then(data => {
-            setSimilarMovies(data.results ? data.results : [data]);
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -191,10 +171,7 @@ const MovieDetails = () => {
                     </p>
                 </div>
             </div>
-            {similarMovies.length  ? 
                 <Slider category='similar' movieID={movieID}/>
-            : ''
-            }
           </div>
       </div>
   );

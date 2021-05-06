@@ -10,6 +10,7 @@ const ResultPage = () => {
     const [totalPages, setTotalPages] = useState(1);
     const [totalResults, setTotalResults] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
+    
     const { category, query } = useParams();
 
     const getResults = () => {
@@ -52,7 +53,6 @@ const ResultPage = () => {
     }
 
     useEffect(() => {
-        console.log('category change');
         if(query === undefined && category === undefined) return;
         setResults([]);
         setCurrentPage(1);
@@ -64,7 +64,6 @@ const ResultPage = () => {
 
     //when the user click show more button
     useEffect(() => {
-        console.log('current page change');
         if(query === undefined && category === undefined) return;
         getResults();
     }, [currentPage]);
