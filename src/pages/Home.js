@@ -1,6 +1,6 @@
 import React from 'react';
-import Carousel from '../components/content-components/Carousel';
-import Slider from '../components/content-components/Slider';
+import Carousel from '../components/Carousel';
+import Slider from '../components/Slider';
 import '../scss/App.scss';
 
 const Home = () => {

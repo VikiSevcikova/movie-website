@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import API_KEY from '../../key';
+import API_KEY from '../key';
 
 const Carousel = () => {
     const [popular, setPopular] = useState([]);

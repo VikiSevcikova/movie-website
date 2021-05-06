@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import '../scss/MovieDetails.scss';
-import Slider from '../components/content-components/Slider';
+import Slider from '../components/Slider';
 import API_KEY from '../key';
 
 const MovieDetails = () => {
@@ -12,9 +12,8 @@ const MovieDetails = () => {
     const [similarMovies, setSimilarMovies] = useState([]);
 
     const { movieID } = useParams();
-    const clickHandler = (e) => {
-        e.preventDefault();
-    };
+
+ 
 
     useEffect(() => {
         getMovie(movieID);
@@ -23,6 +22,7 @@ const MovieDetails = () => {
         getSimilarMovies(movieID);
     }, []);
 
+    //when the user is on movie details page and click on similar movie
     useEffect(() => {
         getMovie(movieID);
         getVideo(movieID);
@@ -86,9 +86,7 @@ const MovieDetails = () => {
             return response.json();
         })
         .then(data => {
-            console.log(data);
             setSimilarMovies(data.results ? data.results : [data]);
-            console.log('Similar MOVIES:'+similarMovies);
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -96,7 +94,6 @@ const MovieDetails = () => {
     }
 
     const getVideo = (id) => {
-        console.log('fetch similar'+id);
         const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`
         fetch(url)
         .then(response => {
@@ -110,12 +107,16 @@ const MovieDetails = () => {
             if(data.results){
                 const youtubeVideos = data.results.filter(v => v.site === 'YouTube');
                 setVideo(youtubeVideos[0]);
-                console.log(youtubeVideos[0].key);
             }
         })
         .catch((error) => {
             console.error('Error:', error);
         });
+    }
+
+    const stopVideoHandler = () => {
+        const trailer = document.getElementById('trailer-video');
+        trailer.src = `https://www.youtube.com/embed/${video.key}`;
     }
   return (
       <div className='container content'>
@@ -126,7 +127,7 @@ const MovieDetails = () => {
             <div className='col-xs-12 col-sm-3 col-md-3 image-lg-dev'>
                 <img className='card-img-top' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
             </div>
-            <div className='col-xs-12 col-md-7 col-md-6 pad-lr-20'>
+            <div className='col-xs-12 col-lg-7'>
                     <div className='col-12'>
                             <h1>{movie.title}</h1>
                     </div>
@@ -135,7 +136,7 @@ const MovieDetails = () => {
                     <div className='col-5 image-sm-dev'>
                         <img className='card-img-top' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
                     </div>
-                    <div className='col-7'>
+                    <div className='col-7 movie-info'>
                         <div>
                             <span> <i className='fa fa-calendar-day'></i> <strong>{formatDate(movie.release_date)}</strong></span>
                             <span> <i className='fa fa-clock-o'></i> <strong>{movie.runtime} minutes</strong></span>
@@ -147,19 +148,19 @@ const MovieDetails = () => {
                                 : ''}
                         </div>
                         {video ? 
-                            <div className='trailer-link'>
-                                <a onClick={clickHandler} href='#' data-bs-toggle="modal" data-bs-target="#trailer" >
+                            <div>
+                                <a className='trailer-link' href='#' data-bs-toggle="modal" data-bs-target="#trailer" >
                                     <i className='fa fa-play-circle'></i> Trailer
                                 </a>
                                 <div id="trailer" className="modal fade">
                                     <div className="modal-dialog">
                                         <div className="video modal-content">
                                             <div className="modal-header">
-                                                <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <button onClick={stopVideoHandler} type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div className="modal-body">
                                             <div className="embed-responsive embed-responsive-16by9">
-                                                <iframe id="cartoonVideo" className="embed-responsive-item" width="560" height="315" src={`https://www.youtube.com/embed/${video.key}`} allowFullScreen></iframe>
+                                                <iframe id="trailer-video" className="embed-responsive-item" width="560" height="315" src={`https://www.youtube.com/embed/${video.key}`} allowFullScreen></iframe>
                                             </div>
                                             </div>
                                         </div>
@@ -199,10 +200,10 @@ const MovieDetails = () => {
                     </p>
                 </div>
             </div>
-          </div>
-          <div className='slider-wrap'>
-            <h2>Related Movies</h2>
-            <Slider category='similar' movieID={movieID}/>
+            {similarMovies.length  ? 
+                <Slider category='similar' movieID={movieID}/>
+            : ''
+          }
           </div>
       </div>
   );

@@ -20,6 +20,7 @@ function App() {
           <Route path='/movie/:movieID/movie-seat' exact component={MovieSeat} routerProps={':movieID'}/>
           <Route path='/category/:category' exact component={ResultPage} routerProps={':category'}/>
           <Route path='/search/:query' exact component={ResultPage} routerProps={':query'}/>
+          <Route path='/search/' exact component={ResultPage}/>
         </Switch>
         <Footer />
       </BrowserRouter>     

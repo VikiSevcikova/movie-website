@@ -32,6 +32,13 @@ body{
     color: rgba(255, 255, 255, 0.8);
     &:focus{
         color: rgba(255, 255, 255, 0.8);
+        border-color: #0d6efd;
+        box-shadow: none;
+    }
+}
+.btn-outline-primary{
+    &:focus{
+        box-shadow: none !important;
     }
 }
 
@@ -73,11 +80,9 @@ body{
                 position: absolute;
                 left: 50%;
                 transform: translate(-50%);
-                // display: flex;
-                // flex-direction: column;
                 text-align: center;
                 padding: 0 15px;
-                width: 50%;
+                width: 80%;
                 display: block;
                 h1{
                     -webkit-text-stroke: 1px rgb(255, 255, 255);
@@ -85,11 +90,15 @@ body{
                     
                 }
                 .btn{
-                    background-color: #343434aa;
-                    color: white;
+                    background-color: rgba(255, 255, 255, 0.85);
+                    color: #343434aa;
                     z-index: 2;
+                    font-weight: 500;
                     &:hover{
-                        background-color: #343434c1;
+                        background-color: rgba(255, 255, 255, 0.694);
+                    }
+                    &:focus{
+                        box-shadow: none !important;
                     }
                 }
             }
@@ -112,6 +121,22 @@ body{
         margin-bottom: 20px;
         padding: 0;
         z-index: 1;
+        &.grab {
+            cursor: move;
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+            .thumbnails-list{
+                cursor: pointer;
+            }
+            &:active {
+                cursor: grabbing;
+                cursor: -moz-grabbing;
+                cursor: -webkit-grabbing;
+            }
+        }
+    
+        
         .item{
             margin: 10px 20px 10px 0;
             transition: all 0.4s ease-in-out;
@@ -185,7 +210,12 @@ body{
 .show-more{
     margin: 20px 10px;
 }
-
+.disable{
+    pointer-events: none;
+    &:hover{
+        color: white;
+    }
+}
 
 
 @media (min-width: 992px) {
@@ -197,6 +227,7 @@ body{
         .carousel-inner{
             .carousel-movie-info{
                 bottom: 55% !important;
+                width: 50% !important;
             }
         }
     }
@@ -223,7 +254,6 @@ body{
         .carousel-inner{
             margin-top: 55px;
             .carousel-movie-info{
-                width: 90% !important;
                 bottom: 70% !important;
             }
         }
@@ -247,23 +277,3 @@ body{
     border-bottom: 1px solid #343434;
 }
 
-
-.modal-dialog {
-    .modal-content{
-        margin-top: 50px;
-        &.video{
-            border: none;
-            background-color:transparent;
-            .modal-header{
-                border-bottom: none;
-                padding-bottom: 0;
-            }
-            iframe{
-                margin: 0 auto;
-                display: block;
-                width: 100%;
-            }
-        }
-       
-    }
-}

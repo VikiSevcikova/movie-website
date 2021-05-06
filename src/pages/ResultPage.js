@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 import {categoryTitleHandler} from '../components/CommonFunctions';
 import API_KEY from '../key';
 import '../scss/App.scss';
-import MovieCard from '../components/content-components/MovieCard';
+import MovieCard from '../components/MovieCard';
 
 const ResultPage = () => {
     const [results, setResults] = useState([]);
@@ -14,7 +14,7 @@ const ResultPage = () => {
 
     const getResults = () => {
         let url;
-        if(query){
+        if(query || !category){
             url = `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${API_KEY}&language=en-US&page=${currentPage}`
         }else{
             url = `https://api.themoviedb.org/3/movie/${category ? category : ''}?api_key=${API_KEY}&language=en-US&page=${currentPage}`
@@ -28,8 +28,12 @@ const ResultPage = () => {
             return response.json();
         })
         .then(data => {
-            if(data.results){
-                if(currentPage === 1){setResults(data.results);}else{setResults([... results, ...data.results]);}
+            if(data && data.results){
+                if(currentPage === 1){
+                    setResults(data.results);
+                }else{
+                    setResults([... results, ...data.results]);
+                }
                 setTotalPages(data.total_pages);
                 setTotalResults(data.total_results);
             }else{
@@ -48,10 +52,8 @@ const ResultPage = () => {
     }
 
     useEffect(() => {
-        getResults();
-    }, []);
-
-    useEffect(() => {
+        console.log('category change');
+        if(query === undefined && category === undefined) return;
         setResults([]);
         setCurrentPage(1);
         //this is the case when the user click on new category page
@@ -62,6 +64,8 @@ const ResultPage = () => {
 
     //when the user click show more button
     useEffect(() => {
+        console.log('current page change');
+        if(query === undefined && category === undefined) return;
         getResults();
     }, [currentPage]);
 
@@ -70,7 +74,7 @@ const ResultPage = () => {
             <div className='container content'>
                 <div className="row movie-grid">
                     <h2 className='title'>
-                        {results ? `Found ${totalResults} results for ${category ? categoryTitleHandler(category) : "'"+query+"'"}` : "No Results"}
+                        {results && (query || results) ? `Found ${totalResults} results for ${category ? categoryTitleHandler(category) : "'"+query+"'"}` : "No Results"}
                     </h2>
                     {results.map((result) => (
                         <MovieCard key={result.id} movie={result}/>
