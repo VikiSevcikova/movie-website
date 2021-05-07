@@ -1,0 +1,63 @@
+#bg-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 30px;
+  z-index: -1;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 100%);
+  mask-image: linear-gradient(to top, transparent 0%, black 100%); }
+  #bg-fade img {
+    width: 100%;
+    height: 100%; }
+
+.mbottom {
+  margin-bottom: 20px; }
+
+.movie-image-info h1 {
+  margin-bottom: 20px; }
+
+.movie-image-info .movie-info .trailer-link:hover {
+  color: #0d6efd; }
+
+.movie-image-info .tickets-btn {
+  margin-top: 20px;
+  width: 50%;
+  text-transform: uppercase; }
+  .movie-image-info .tickets-btn:focus {
+    box-shadow: none !important; }
+
+.movie-image-info .modal {
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px); }
+  .movie-image-info .modal .modal-dialog .modal-content {
+    margin-top: 50px; }
+    .movie-image-info .modal .modal-dialog .modal-content.video {
+      border: none;
+      background-color: transparent; }
+      .movie-image-info .modal .modal-dialog .modal-content.video .modal-header {
+        border-bottom: none;
+        padding-bottom: 0; }
+      .movie-image-info .modal .modal-dialog .modal-content.video iframe {
+        margin: 0 auto;
+        display: block;
+        width: 100%; }
+
+@media (min-width: 992px) {
+  .movie-image-info {
+    padding-top: 350px; }
+  .image-sm-dev {
+    display: none; } }
+
+@media (max-width: 992px) {
+  .movie-image-info {
+    padding-top: 200px; }
+    .movie-image-info .image-lg-dev {
+      display: none; }
+    .movie-image-info .image-sm-dev {
+      display: inline-block; }
+    .movie-image-info .tickets-btn {
+      margin: 10px 0px;
+      width: 100%; } }

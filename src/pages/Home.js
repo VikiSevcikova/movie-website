@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Carousel from '../components/Carousel';
 import Slider from '../components/Slider';
-import '../scss/App.scss';
+import '../css/App.css';
 
 const Home = () => {
+  useEffect(()=>{
+    document.title = 'Home';
+  },[]);
+
   return (
       <>
         <Carousel />

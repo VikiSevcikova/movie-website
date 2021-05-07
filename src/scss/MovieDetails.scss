@@ -12,22 +12,19 @@
     img{
         width: 100%;
         height: 100%;
-        filter: brightness(50%);
+        // filter: brightness(50%);
     }
 }
-.fade-in{
-    opacity: 0.9;
+
+.mbottom{
+    margin-bottom: 20px;
 }
+
 .movie-image-info{
-    padding-top: 400px;
     h1{
         margin-bottom: 20px;
     }
     .movie-info{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 120px;
         .trailer-link{
             &:hover{
                 color: #0d6efd;
@@ -68,11 +65,8 @@
 }
 
 @media (min-width: 992px) { 
-    #bg-fade{
-        display: none;
-    }
     .movie-image-info{
-        padding-top: 70px;
+        padding-top: 350px;
     }
     .image-sm-dev{
         display: none;
@@ -80,12 +74,8 @@
 }
 
 @media (max-width: 992px) {
-    #bg-fade{
-        display: visible;
-      
-    }
     .movie-image-info{
-        padding-top: 350px;
+        padding-top: 200px;
         .image-lg-dev{
             display: none;
         }

@@ -1,17 +1,36 @@
 import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {categoryTitleHandler} from '../components/CommonFunctions';
-import API_KEY from '../key';
-import '../scss/App.scss';
 import MovieCard from '../components/MovieCard';
+import API_KEY from '../key';
+import '../css/App.css';
 
 const ResultPage = () => {
     const [results, setResults] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
     const [totalResults, setTotalResults] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
-    
     const { category, query } = useParams();
+
+    useEffect(()=>{
+        document.title = 'Results';
+      },[]);
+
+    useEffect(() => {
+        if(query === undefined && category === undefined) return;
+        setResults([]);
+        setCurrentPage(1);
+        //this is the case when the user click on new category page
+        if(currentPage === 1){
+            getResults();
+        }
+    }, [category]);
+
+    //when the user click show more button
+    useEffect(() => {
+        if(query === undefined && category === undefined) return;
+        getResults();
+    }, [currentPage]);
 
     const getResults = () => {
         let url;
@@ -52,37 +71,21 @@ const ResultPage = () => {
         }
     }
 
-    useEffect(() => {
-        if(query === undefined && category === undefined) return;
-        setResults([]);
-        setCurrentPage(1);
-        //this is the case when the user click on new category page
-        if(currentPage === 1){
-            getResults();
-        }
-    }, [category]);
-
-    //when the user click show more button
-    useEffect(() => {
-        if(query === undefined && category === undefined) return;
-        getResults();
-    }, [currentPage]);
-
     return (
         <>
             <div className='container content'>
                 <div className="row movie-grid">
                     <h2 className='title'>
-                        {results && (query || results) ? `Found ${totalResults} results for ${category ? categoryTitleHandler(category) : "'"+query+"'"}` : "No Results"}
+                        {results.length !== 0 ? `Results for ${category ? categoryTitleHandler(category) : "'"+query+"'"}` : 'No Results'}
                     </h2>
                     {results.map((result) => (
                         <MovieCard key={result.id} movie={result}/>
                     ))}
-                    {currentPage < totalPages ? 
+                    {currentPage < totalPages &&
                         <div onClick={showMoreHandler} className="show-more btn btn-primary col-12">
                             Show More
                         </div>
-                     : ''}
+                     }
                 </div>
             </div>
         </>

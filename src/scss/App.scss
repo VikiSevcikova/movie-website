@@ -59,7 +59,7 @@ body{
     min-height: 90vh;
 }
 .carousel{
-    height: 500px;
+    height: 400px;
     width: 100%;
     .carousel-inner{
         position: absolute;
@@ -70,7 +70,6 @@ body{
         .carousel-item{
             position: relative;
             img{
-                filter: brightness(50%);
                 max-height: 1000px;
                 -webkit-mask-image: linear-gradient(to top, transparent 0%, black 100%);
                 mask-image: linear-gradient(to top, transparent 0%, black 100%);
@@ -211,7 +210,7 @@ body{
         height: 500px;
         .carousel-inner{
             .carousel-movie-info{
-                bottom: 55% !important;
+                bottom: 46% !important;
                 width: 50% !important;
             }
         }
@@ -220,7 +219,7 @@ body{
 
 @media (max-width: 992px) {
     .carousel-movie-info{
-        bottom: 55% !important;
+        bottom: 30% !important;
     }
     .left-arrow, .right-arrow{
         display: none;
@@ -235,11 +234,11 @@ body{
         display: none;
     }
     .carousel{
-        height: 330px;
+        height: 300px;
         .carousel-inner{
             margin-top: 55px;
             .carousel-movie-info{
-                bottom: 70% !important;
+                bottom: 25% !important;
             }
         }
     }

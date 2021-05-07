@@ -49,7 +49,7 @@ const Carousel = () => {
                                             <h1>{p.title}</h1>
                                             <Link  to={`/movie/${p.id}`} className='btn'> More Details </Link>
                                         </div>
-                                        <img src={`https://image.tmdb.org/t/p/w500${p.poster_path}`} className="d-block w-100" alt="..."/>
+                                        <img src={`https://image.tmdb.org/t/p/original${p.backdrop_path}`} className="d-block w-100" alt="..."/>
                                     </div>
                         }else{
                             return  <div key={p.id} className="carousel-item">
@@ -57,7 +57,7 @@ const Carousel = () => {
                                             <h1>{p.title}</h1>
                                             <Link to={`/movie/${p.id}`} className='btn'> More Details </Link>
                                         </div>            
-                                        <img src={`https://image.tmdb.org/t/p/w500${p.poster_path}`} className="d-block w-100" alt={p.title}/>
+                                        <img src={`https://image.tmdb.org/t/p/original${p.backdrop_path}`} className="d-block w-100" alt={p.title}/>
                                     </div>
                         }
                     })}

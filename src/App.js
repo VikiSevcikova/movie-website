@@ -3,6 +3,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import MovieSeat from './pages/MovieSeat';
 import MovieDetails from './pages/MovieDetails';
+import {ScrollToTop} from './components/CommonFunctions';
 
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
@@ -13,6 +14,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <ScrollToTop />
         <Navbar />
         <Switch>
           <Route path='/' exact component={Home}/>

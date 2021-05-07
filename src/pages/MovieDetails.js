@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {useParams, Link} from 'react-router-dom';
-import '../scss/MovieDetails.scss';
 import Slider from '../components/Slider';
 import API_KEY from '../key';
+import '../css/MovieDetails.css';
 
 const MovieDetails = () => {
     const [movie, setMovie] = useState({});
@@ -11,6 +11,11 @@ const MovieDetails = () => {
     const [actors, setActors] = useState([]);			 
 
     const { movieID } = useParams();
+
+    useEffect(() => {
+        document.title = movie.title;
+        localStorage.setItem('selectedMovie', JSON.stringify(movie));
+    },[movie]);
 
     //when the user is on movie details page and click on similar movie
     useEffect(() => {
@@ -92,11 +97,11 @@ const MovieDetails = () => {
   return (
       <div className='container content'>
           <div id='bg-fade'>
-            <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : ''} className="" alt={movie.title}/>
+            <img src={movie.backdrop_path && `https://image.tmdb.org/t/p/original${movie.backdrop_path}`} className="" alt={movie.title}/>
           </div>
           <div className='row movie-image-info'>
             <div className='col-xs-12 col-sm-3 col-md-3 image-lg-dev'>
-                <img className='card-img-top' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
+                <img className='card-img-top' src={movie.poster_path && `https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
             </div>
             <div className='col-xs-12 col-lg-7'>
                     <div className='col-12'>
@@ -105,21 +110,21 @@ const MovieDetails = () => {
                 <div className='row'>
                  
                     <div className='col-5 image-sm-dev'>
-                        <img className='card-img-top' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+                        <img className='card-img-top' src={movie.poster_path && `https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
                     </div>
                     <div className='col-7 movie-info'>
-                        <div>
+                        <div className='mbottom'>
                             <span> <i className='fa fa-calendar-day'></i> <strong>{formatDate(movie.release_date)}</strong></span>
                             <span> <i className='fa fa-clock-o'></i> <strong>{movie.runtime} minutes</strong></span>
                         </div>
-                        <div>
-                            {movie.genres ? 
+                        <div className='mbottom'>
+                            {movie.genres &&
                                 movie.genres.map((genre, i) => (
                                 `${genre.name} ${i !== (movie.genres.length - 1) ? '|' : '' } `)) 
-                                : ''}
+                            }
                         </div>
-                        {video ? 
-                            <div>
+                        {video && 
+                            <div className='mbottom'>
                                 <a className='trailer-link' href='' data-bs-toggle="modal" data-bs-target="#trailer" >
                                     <i className='fa fa-play-circle'></i> Trailer
                                 </a>
@@ -138,7 +143,6 @@ const MovieDetails = () => {
                                     </div>
                                 </div>
                             </div>
-                            : ''    
                         }
                     </div>
                     </div>

@@ -3,7 +3,7 @@ import MovieSelector from '../components/movie-seat-components/MoviesSelector';
 import Showcase from '../components/movie-seat-components/Showcase';
 import Seats from '../components/movie-seat-components/Seats';
 import TotalPrice from '../components/movie-seat-components/TotalPrice';
-import '../scss/MovieSeat.scss';
+import '../css/MovieSeat.css';
 
 const MovieSeat = () => {
   const movieList = [{ id: 1, name: 'Mortal Kombat', price: 12 },
@@ -16,13 +16,8 @@ const MovieSeat = () => {
   const [selectedMovie, setSelectedMovie] = useState(1);
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [occupiedSeats, setOccupiedSeats] = useState(['E4', 'E5', 'C9', 'C10']);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(10);
   const [seats, setSeats] = useState([]);
-
-  const priceHandler = () => {
-    const m = movieList.find(movie => movie.id === selectedMovie);
-    setTotalPrice(m.price);
-  };
 
 //dynamically load seats
   const loadSeats = () => {
@@ -85,7 +80,6 @@ const MovieSeat = () => {
 
   //if the selectedMovie is changed the save the new price and save the movie in local storage 
   useEffect(() => {
-    priceHandler();
     saveLocalSelectedMovie();
   }, [selectedMovie]);
 
@@ -97,7 +91,7 @@ const MovieSeat = () => {
 
   return (
     <div className="movie-seat">
-        <MovieSelector movieList={movieList} selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie}/>
+        <MovieSelector selectedMovie={selectedMovie}/>
 
         <Showcase />
 
