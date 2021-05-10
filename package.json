@@ -1,5 +1,6 @@
 {
   "name": "movie-website",
+  "homepage": "https://vikisevcikova.github.io/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
