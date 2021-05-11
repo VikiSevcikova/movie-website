@@ -17,12 +17,12 @@ function App() {
         <ScrollToTop />
         <Navbar />
         <Switch>
-          <Route path='/' exact component={Home}/>
-          <Route path='/movie/:movieID' exact component={MovieDetails} routerProps={':movieID'}/>
-          <Route path='/movie/:movieID/movie-seat' exact component={MovieSeat} routerProps={':movieID'}/>
-          <Route path='/category/:category' exact component={ResultPage} routerProps={':category'}/>
-          <Route path='/search/:query' exact component={ResultPage} routerProps={':query'}/>
-          <Route path='/search/' exact component={ResultPage}/>
+          <Route path='/movie-website' exact component={Home}/>
+          <Route path='/movie-website/movie/:movieID' exact component={MovieDetails} routerProps={':movieID'}/>
+          <Route path='/movie-website/movie/:movieID/movie-seat' exact component={MovieSeat} routerProps={':movieID'}/>
+          <Route path='/movie-website/category/:category' exact component={ResultPage} routerProps={':category'}/>
+          <Route path='/movie-website/search/:query' exact component={ResultPage} routerProps={':query'}/>
+          <Route path='/movie-website/search/' exact component={ResultPage}/>
         </Switch>
         <Footer />
       </BrowserRouter>     

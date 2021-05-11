@@ -74,7 +74,7 @@ const Slider = ({category, movieID}) => {
         <>
             {movies.length !== 0 && 
                 <div className='slider-wrap'>
-                    <Link className={category === 'similar' ? 'disable' : ''} to={category !== 'similar' ? `/category/${category}` : '#'}>
+                    <Link className={category === 'similar' ? 'disable' : ''} to={category !== 'similar' ? `/movie-website/category/${category}` : '#'}>
                         <h1>{categoryTitleHandler(category)}</h1> 
                     </Link>
                     <div onMouseDown={mouseDownHandler} className='slider'>
