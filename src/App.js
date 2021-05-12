@@ -1,14 +1,14 @@
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import MovieSeat from './pages/MovieSeat';
-import MovieDetails from './pages/MovieDetails';
+import Home from './components/pages/Home';
+import ResultPage from './components/pages/ResultPage';
+import MovieDetails from './components/pages/MovieDetails';
+import MovieSeat from './components/pages/MovieSeat';
 import {ScrollToTop} from './components/CommonFunctions';
 
 import {HashRouter, Switch, Route} from 'react-router-dom';
 
 import './scss/App.scss';
-import ResultPage from './pages/ResultPage';
 
 function App() {
   return (

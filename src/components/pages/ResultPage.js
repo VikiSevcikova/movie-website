@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
-import {categoryTitleHandler} from '../components/CommonFunctions';
-import MovieCard from '../components/MovieCard';
-import API_KEY from '../key';
-import '../css/App.css';
+import {categoryTitleHandler} from '../CommonFunctions';
+import MovieCard from '../MovieCard';
+import API_KEY from './../../key';
+import './../../css/App.css';
 
 const ResultPage = () => {
     const [results, setResults] = useState([]);
