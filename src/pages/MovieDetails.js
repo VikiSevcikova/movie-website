@@ -147,7 +147,7 @@ const MovieDetails = () => {
                     </div>
                     </div>
                 <div className='col'>
-                    <Link to={`/movie-website/movie/${movie.id}/movie-seat`} className='tickets-btn btn btn-primary'>
+                    <Link to={`/movie/${movie.id}/movie-seat`} className='tickets-btn btn btn-primary'>
                         Get Tickets
                     </Link>
                 </div>

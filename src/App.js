@@ -5,7 +5,7 @@ import MovieSeat from './pages/MovieSeat';
 import MovieDetails from './pages/MovieDetails';
 import {ScrollToTop} from './components/CommonFunctions';
 
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {HashRouter, Switch, Route} from 'react-router-dom';
 
 import './scss/App.scss';
 import ResultPage from './pages/ResultPage';
@@ -13,19 +13,19 @@ import ResultPage from './pages/ResultPage';
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <HashRouter basename='/movie-website'>
         <ScrollToTop />
         <Navbar />
         <Switch>
-          <Route path='/movie-website' exact component={Home}/>
-          <Route path='/movie-website/movie/:movieID' exact component={MovieDetails} routerProps={':movieID'}/>
-          <Route path='/movie-website/movie/:movieID/movie-seat' exact component={MovieSeat} routerProps={':movieID'}/>
-          <Route path='/movie-website/category/:category' exact component={ResultPage} routerProps={':category'}/>
-          <Route path='/movie-website/search/:query' exact component={ResultPage} routerProps={':query'}/>
-          <Route path='/movie-website/search/' exact component={ResultPage}/>
+          <Route path='/' exact component={Home}/>
+          <Route path='/movie/:movieID' exact component={MovieDetails} routerProps={':movieID'}/>
+          <Route path='/movie/:movieID/movie-seat' exact component={MovieSeat} routerProps={':movieID'}/>
+          <Route path='/category/:category' exact component={ResultPage} routerProps={':category'}/>
+          <Route path='/search/:query' exact component={ResultPage} routerProps={':query'}/>
+          <Route path='/search/' exact component={ResultPage}/>
         </Switch>
         <Footer />
-      </BrowserRouter>     
+      </HashRouter>     
     </>
   );
 }

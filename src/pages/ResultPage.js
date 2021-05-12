@@ -7,7 +7,7 @@ import '../css/App.css';
 
 const ResultPage = () => {
     const [results, setResults] = useState([]);
-    const [totalPages, setTotalPages] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
     const [totalResults, setTotalResults] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const { category, query } = useParams();
@@ -17,14 +17,16 @@ const ResultPage = () => {
       },[]);
 
     useEffect(() => {
-        if(query === undefined && category === undefined) return;
         setResults([]);
         setCurrentPage(1);
+        setTotalResults(0);
+        setTotalPages(0);
+        if(query === undefined && category === undefined) return;
         //this is the case when the user click on new category page
         if(currentPage === 1){
             getResults();
         }
-    }, [category]);
+    }, [category,query]);
 
     //when the user click show more button
     useEffect(() => {
@@ -39,6 +41,7 @@ const ResultPage = () => {
         }else{
             url = `https://api.themoviedb.org/3/movie/${category ? category : ''}?api_key=${API_KEY}&language=en-US&page=${currentPage}`
         }
+        console.log(url);
         fetch(url)
         .then(response => {
             if(response.status !== 200){
@@ -51,13 +54,11 @@ const ResultPage = () => {
             if(data && data.results){
                 if(currentPage === 1){
                     setResults(data.results);
+                    setTotalPages(data.total_pages);
+                    setTotalResults(data.total_results);
                 }else{
                     setResults([...results, ...data.results]);
                 }
-                setTotalPages(data.total_pages);
-                setTotalResults(data.total_results);
-            }else{
-                setResults([data]);
             }
         })
         .catch((error) => {
@@ -74,19 +75,28 @@ const ResultPage = () => {
     return (
         <>
             <div className='container content'>
-                <div className="row movie-grid">
-                    <h2 className='title'>
-                        {results.length !== 0 ? `Results for ${category ? categoryTitleHandler(category) : "'"+query+"'"}` : 'No Results'}
-                    </h2>
-                    {results.map((result) => (
-                        <MovieCard key={result.id} movie={result}/>
-                    ))}
-                    {currentPage < totalPages &&
-                        <div onClick={showMoreHandler} className="show-more btn btn-primary col-12">
-                            Show More
-                        </div>
-                     }
-                </div>
+               
+                    <div className="row movie-grid">
+                        {results.length !== 0 ?
+                            <>
+                            <h2 className='title'>
+                                {`Results for ${category ? categoryTitleHandler(category) : "'"+query+"'"}`}
+                            </h2>
+                            {results.map((result) => (
+                                <MovieCard key={result.id} movie={result}/>
+                            ))}
+                            {currentPage < totalPages &&
+                                <div onClick={showMoreHandler} className="show-more btn btn-primary col-12">
+                                    Show More
+                                </div>
+                            }
+                            </>
+                            :  
+                            <h2 className='title'>
+                               No results, please enter search value...
+                            </h2>
+                        }
+                    </div>
             </div>
         </>
     );

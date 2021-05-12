@@ -47,7 +47,7 @@ const Carousel = () => {
                             return  <div key={p.id} className="carousel-item active">
                                         <div className='carousel-movie-info'>
                                             <h1>{p.title}</h1>
-                                            <Link  to={`/movie-website/movie/${p.id}`} className='btn'> More Details </Link>
+                                            <Link  to={`/movie/${p.id}`} className='btn'> More Details </Link>
                                         </div>
                                         <img src={`https://image.tmdb.org/t/p/original${p.backdrop_path}`} className="d-block w-100" alt="..."/>
                                     </div>
@@ -55,7 +55,7 @@ const Carousel = () => {
                             return  <div key={p.id} className="carousel-item">
                                         <div className='carousel-movie-info'>
                                             <h1>{p.title}</h1>
-                                            <Link to={`/movie-website/movie/${p.id}`} className='btn'> More Details </Link>
+                                            <Link to={`/movie/${p.id}`} className='btn'> More Details </Link>
                                         </div>            
                                         <img src={`https://image.tmdb.org/t/p/original${p.backdrop_path}`} className="d-block w-100" alt={p.title}/>
                                     </div>
