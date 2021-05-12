@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import MovieSelector from '../components/movie-seat-components/MoviesSelector';
-import Showcase from '../components/movie-seat-components/Showcase';
-import Seats from '../components/movie-seat-components/Seats';
-import TotalPrice from '../components/movie-seat-components/TotalPrice';
-import '../css/MovieSeat.css';
+import MovieSelector from '../movie-seat-components/MoviesSelector';
+import Showcase from '../movie-seat-components/Showcase';
+import Seats from '../movie-seat-components/Seats';
+import TotalPrice from '../movie-seat-components/TotalPrice';
+import './../../css/MovieSeat.css';
 
 const MovieSeat = () => {
   const movieList = [{ id: 1, name: 'Mortal Kombat', price: 12 },

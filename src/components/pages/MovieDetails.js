@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {useParams, Link} from 'react-router-dom';
-import Slider from '../components/Slider';
-import API_KEY from '../key';
-import '../css/MovieDetails.css';
+import Slider from '../Slider';
+import API_KEY from './../../key';
+import './../../css/MovieDetails.css';
 
 const MovieDetails = () => {
     const [movie, setMovie] = useState({});

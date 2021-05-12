@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import Carousel from '../components/Carousel';
-import Slider from '../components/Slider';
-import '../css/App.css';
+import Carousel from '../Carousel';
+import Slider from '../Slider';
+import './../../css/App.css';
 
 const Home = () => {
   useEffect(()=>{
