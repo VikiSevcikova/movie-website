@@ -9,11 +9,10 @@ const Navbar = () => {
         setSearchValue(e.target.value);
     }
     const submitHandler = (e) => {
-        console.log('submit');
-        console.log(searchValue !== '' ? searchValue : '?');
+        e.preventDefault();
         document.querySelector('.form-control').value = '';
         setSearchValue('');
-        history.push(`/search/${searchValue !== '' ? searchValue : '?'}`);
+        history.push(`/search/${searchValue}`);
     }
     
     return(
