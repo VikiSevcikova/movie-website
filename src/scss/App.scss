@@ -165,7 +165,6 @@ body{
     .movie-card{
         background-color: transparent;
         border: none;
-        height: 450px;
         margin: 10px 0;
         .card-img-top{
             border-radius: 0px;
@@ -177,7 +176,7 @@ body{
             img{
                 height: 100%;
                 width: 100%;
-               
+                object-fit: cover;
             }
             .no-img{
                 height: 100%;

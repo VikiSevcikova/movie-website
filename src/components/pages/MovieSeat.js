@@ -6,11 +6,10 @@ import TotalPrice from '../movie-seat-components/TotalPrice';
 import './../../css/MovieSeat.css';
 
 const MovieSeat = () => {
-  const movieList = [{ id: 1, name: 'Mortal Kombat', price: 12 },
-    { id: 2, name: 'Raya and the Last Dragon', price: 10 },
-    { id: 3, name: 'Godzilla vs Kong', price: 12 },
-    { id: 4, name: 'Black Widow', price: 14 },
-    { id: 5, name: 'Shang-chi and the Legend of the Ten Rings', price: 14 }
+  const ticketTypes = [{ id: 1, name: 'Adult', price: 12 },
+    { id: 2, name: 'Senior', price: 10 },
+    { id: 3, name: 'Student', price: 8 },
+    { id: 4, name: 'Kid', price: 6 }
   ];
   
   const [selectedMovie, setSelectedMovie] = useState(1);

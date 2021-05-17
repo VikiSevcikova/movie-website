@@ -8,7 +8,7 @@ import {ScrollToTop} from './components/CommonFunctions';
 
 import {HashRouter, Switch, Route} from 'react-router-dom';
 
-import './scss/App.scss';
+import './css/App.css';
 
 function App() {
   return (

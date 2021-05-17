@@ -130,7 +130,6 @@ body {
   .movie-grid .movie-card {
     background-color: transparent;
     border: none;
-    height: 450px;
     margin: 10px 0; }
     .movie-grid .movie-card .card-img-top {
       border-radius: 0px;
@@ -140,7 +139,8 @@ body {
         transform: scale(1.05); }
       .movie-grid .movie-card .card-img-top img {
         height: 100%;
-        width: 100%; }
+        width: 100%;
+        object-fit: cover; }
       .movie-grid .movie-card .card-img-top .no-img {
         height: 100%;
         background-color: rgba(255, 255, 255, 0.714);
