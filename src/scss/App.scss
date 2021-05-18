@@ -167,9 +167,6 @@ body{
         border: none;
         margin: 10px 0;
         .card-img-top{
-            border-radius: 0px;
-            transition: all 0.4s ease-in-out;
-            height: 100%;
             &:hover{
                 transform: scale(1.05);
             }
@@ -178,17 +175,22 @@ body{
                 width: 100%;
                 object-fit: cover;
             }
-            .no-img{
-                height: 100%;
-                background-color: rgba(255, 255, 255, 0.714);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                color: #1d1f229e;
-                text-align: center;
-            }
         }
     }
+}
+.card-img-top{
+    border-radius: 0px;
+    transition: all 0.4s ease-in-out;
+    height: 100%;
+}
+.no-img{
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.714);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1d1f229e;
+    text-align: center;
 }
 .show-more{
     margin: 20px 10px;

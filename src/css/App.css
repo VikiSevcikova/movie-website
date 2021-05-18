@@ -131,24 +131,26 @@ body {
     background-color: transparent;
     border: none;
     margin: 10px 0; }
-    .movie-grid .movie-card .card-img-top {
-      border-radius: 0px;
-      transition: all 0.4s ease-in-out;
-      height: 100%; }
-      .movie-grid .movie-card .card-img-top:hover {
-        transform: scale(1.05); }
-      .movie-grid .movie-card .card-img-top img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover; }
-      .movie-grid .movie-card .card-img-top .no-img {
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0.714);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #1d1f229e;
-        text-align: center; }
+    .movie-grid .movie-card .card-img-top:hover {
+      transform: scale(1.05); }
+    .movie-grid .movie-card .card-img-top img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover; }
+
+.card-img-top {
+  border-radius: 0px;
+  transition: all 0.4s ease-in-out;
+  height: 100%; }
+
+.no-img {
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.714);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1d1f229e;
+  text-align: center; }
 
 .show-more {
   margin: 20px 10px; }

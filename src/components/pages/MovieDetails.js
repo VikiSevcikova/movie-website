@@ -101,7 +101,11 @@ const MovieDetails = () => {
           </div>
           <div className='row movie-image-info'>
             <div className='col-xs-12 col-sm-3 col-md-3 image-lg-dev'>
-                <img className='card-img-top' src={movie.poster_path && `https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
+                {movie.poster_path ? 
+                        <img className='card-img-top' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
+                    :
+                    <div className='card-img-top no-img'>{movie.title}</div>
+                }
             </div>
             <div className='col-xs-12 col-lg-7'>
                     <div className='col-12'>
@@ -110,7 +114,11 @@ const MovieDetails = () => {
                 <div className='row'>
                  
                     <div className='col-5 image-sm-dev'>
-                        <img className='card-img-top' src={movie.poster_path && `https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+                        {movie.poster_path ? 
+                            <img className='card-img-top' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
+                        :
+                            <div className='card-img-top no-img'>{movie.title}</div>
+                        }
                     </div>
                     <div className='col-7 movie-info'>
                         <div className='mbottom'>
