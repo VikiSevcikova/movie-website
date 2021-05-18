@@ -15,7 +15,7 @@ const MovieSelector = ({selectedMovie}) => {
         //             ))}
         //     </select>
         // </form>
-        <h2>{selectedMovie.title}</h2>
+        <h2>{selectedMovie ? selectedMovie.title : ''}</h2>
     );
 };
 

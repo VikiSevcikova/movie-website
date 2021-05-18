@@ -33,7 +33,9 @@ const Seat = ({seat, seats, setSeats, selectedSeats, setSelectedSeats}) => {
     }
 
     return(
-        <div onClick={seatClickHandler} className={`seat ${seat.status}`}></div>
+        <div onClick={seatClickHandler} className={`seat ${seat.status}`}>
+            <span className="seat-text">{seat.id}</span>
+        </div>
     );
 };
 export default Seat;

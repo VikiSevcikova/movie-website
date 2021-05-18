@@ -3,7 +3,7 @@ import MovieSelector from '../movie-seat-components/MoviesSelector';
 import Showcase from '../movie-seat-components/Showcase';
 import Seats from '../movie-seat-components/Seats';
 import TotalPrice from '../movie-seat-components/TotalPrice';
-import './../../css/MovieSeat.css';
+import './../../scss/MovieSeat.scss';
 
 const MovieSeat = () => {
   const ticketTypes = [{ id: 1, name: 'Adult', price: 12 },
@@ -12,7 +12,8 @@ const MovieSeat = () => {
     { id: 4, name: 'Kid', price: 6 }
   ];
   
-  const [selectedMovie, setSelectedMovie] = useState(1);
+  const [localMovieSeat, setLocalMovieSeat] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [occupiedSeats, setOccupiedSeats] = useState(['E4', 'E5', 'C9', 'C10']);
   const [totalPrice, setTotalPrice] = useState(10);
@@ -32,7 +33,7 @@ const MovieSeat = () => {
       }
     }
     setSeats(seatArray);
-  }
+  };
 
   //get the status of seat, if the id is in selectedSeats array then return 'selected', if it is inside occupiedSeats array then return 'occupied' else return empty '' 
   const statusHandler = (id) => {
@@ -43,50 +44,53 @@ const MovieSeat = () => {
     }else{
       return '';
     }
-  }
+  };
 
 //get selected movie and selected seats from local storage
   const getLocalSelectedMovieSeats = () => {
+    let selectedMovieLocal;
     if(localStorage.getItem('selectedMovie') === null){
       localStorage.setItem('selectedMovie', JSON.stringify(selectedMovie));
     }else{
-      let selectedMovieLocal = JSON.parse(localStorage.getItem('selectedMovie'));
+      selectedMovieLocal = JSON.parse(localStorage.getItem('selectedMovie'));
       setSelectedMovie(selectedMovieLocal);
     }
 
-    if(localStorage.getItem('selectedSeats') === null){
-      localStorage.setItem('selectedSeats', JSON.stringify([]));
+    if(localStorage.getItem('movieSeats') === null){
+      localStorage.setItem('movieSeats', JSON.stringify(localMovieSeat));
     }else{
-      let selectedSeatsLocal = JSON.parse(localStorage.getItem('selectedSeats'));
-      setSelectedSeats(selectedSeatsLocal);
+      let moviesSeats = JSON.parse(localStorage.getItem('movieSeats'));
+      setLocalMovieSeat(moviesSeats);
+      if(moviesSeats.some(m => m.m === selectedMovieLocal.id)){
+        setSelectedSeats(moviesSeats.find(m => m.m === selectedMovieLocal.id).s);
+      }
     }
-  }
-
-  //save selected movie in local storage
-  const saveLocalSelectedMovie = () => {
-    localStorage.setItem('selectedMovie', JSON.stringify(selectedMovie));
-  }
-
-  //save selected movie in local storage
-  const saveLocalSelectedSeats = () => {
-    localStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
-  }
+  };
 
   //when the page is loaded get the data from local storage
   useEffect(() => {
     getLocalSelectedMovieSeats();
   }, []);
 
-  //if the selectedMovie is changed the save the new price and save the movie in local storage 
-  useEffect(() => {
-    saveLocalSelectedMovie();
-  }, [selectedMovie]);
-
   //if the selectedSeats are changed, load the seats, because some of the statuses can be different and save the selectedSeats in local storage
   useEffect(() => {
     loadSeats();
-    saveLocalSelectedSeats();
+    if(!selectedMovie) return;
+    if (!localMovieSeat.some(m => m.m === selectedMovie.id)){
+      setLocalMovieSeat([...localMovieSeat, {m: selectedMovie.id, s: selectedSeats}]);
+    }else{
+      setLocalMovieSeat(localMovieSeat.map(m => {
+        if(m.m === selectedMovie.id){
+          return {...m, s: selectedSeats}
+        }
+        return m;
+      }));
+    }
   }, [selectedSeats]);
+
+  useEffect(() => {
+    localStorage.setItem('movieSeats', JSON.stringify(localMovieSeat));
+  },[localMovieSeat]);
 
   return (
     <div className="movie-seat">
@@ -97,6 +101,8 @@ const MovieSeat = () => {
         <Seats seats={seats} setSeats={setSeats} selectedSeats={selectedSeats} setSelectedSeats={setSelectedSeats}/>
 
         <TotalPrice selectedSeats={selectedSeats} totalPrice={totalPrice}/>
+
+        <button className="btn btn-primary">Checkout</button>
     </div>
   );
 }
