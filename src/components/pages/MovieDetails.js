@@ -5,23 +5,18 @@ import API_KEY from './../../key';
 import './../../css/MovieDetails.css';
 
 const MovieDetails = () => {
-    const [movie, setMovie] = useState({});
+    const [movie, setMovie] = useState(null);
     const [video, setVideo] = useState({});
     const [director, setDirector] = useState([]);
     const [actors, setActors] = useState([]);			 
 
     const { movieID } = useParams();
-
     useEffect(() => {
-        document.title = movie.title;
+        document.title = movie ? movie.title : 'Movie Website';
         localStorage.setItem('selectedMovie', JSON.stringify(movie));
-    },[movie]);
-
-    //when the user is on movie details page and click on similar movie
-    useEffect(() => {
         getMovie(movieID);
         getVideo(movieID);
-        getDirectorAndCast(movieID);		   
+        getDirectorAndCast(movieID);
     },[movieID]);
 
     const formatDate = (date) => {
@@ -95,7 +90,7 @@ const MovieDetails = () => {
         trailer.src = `https://www.youtube.com/embed/${video.key}`;
     }
   return (
-      <div className='container content'>
+      movie && <div key={movieID} className='container content'>
           <div id='bg-fade'>
             <img src={movie.backdrop_path && `https://image.tmdb.org/t/p/original${movie.backdrop_path}`} className="" alt={movie.title}/>
           </div>

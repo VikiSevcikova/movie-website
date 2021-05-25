@@ -6,13 +6,11 @@ import API_KEY from '../key';
 
 const Slider = ({category, movieID}) => {
     const [movies, setMovies] = useState([]);
-
     // //when the user is on movie details page and click on similar movie
     useEffect(() => {
         getMovies(category);
         if(document.querySelector('.slider'))
         document.querySelector('.slider').scrollLeft = 0;
-        return (()=>setMovies([]))
     },[movieID]);
 
     const getMovies = (category) => {
@@ -81,7 +79,7 @@ const Slider = ({category, movieID}) => {
                         <i onClick={scrollHandler('left')} className="left-arrow carousel-control-prev-icon"></i>
 
                         {movies.map((movie) => (
-                            <SliderItem key={movie.id} movie={movie} disableClick={disableClick}/>
+                            <SliderItem key={movie.id} movie={movie} setMovies={setMovies} disableClick={disableClick}/>
                         ))}
                         
                         <i onClick={scrollHandler('right')} className="right-arrow carousel-control-next-icon"></i>
