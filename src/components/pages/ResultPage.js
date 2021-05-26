@@ -41,7 +41,6 @@ const ResultPage = () => {
         }else{
             url = `https://api.themoviedb.org/3/movie/${category ? category : ''}?api_key=${API_KEY}&language=en-US&page=${currentPage}`
         }
-        console.log(url);
         fetch(url)
         .then(response => {
             if(response.status !== 200){

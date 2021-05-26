@@ -11,6 +11,7 @@ const Slider = ({category, movieID}) => {
         getMovies(category);
         if(document.querySelector('.slider'))
         document.querySelector('.slider').scrollLeft = 0;
+        return () => setMovies([]);
     },[movieID]);
 
     const getMovies = (category) => {
