@@ -11,13 +11,17 @@ const MovieDetails = () => {
     const [actors, setActors] = useState([]);			 
 
     const { movieID } = useParams();
+
     useEffect(() => {
-        document.title = movie ? movie.title : 'Movie Website';
-        localStorage.setItem('selectedMovie', JSON.stringify(movie));
         getMovie(movieID);
         getVideo(movieID);
         getDirectorAndCast(movieID);
     },[movieID]);
+
+    useEffect(()=>{
+        document.title = movie ? movie.title : 'Movie Website';
+        localStorage.setItem('selectedMovie', JSON.stringify(movie));
+    },[movie])
 
     const formatDate = (date) => {
         const d = new Date(date);
