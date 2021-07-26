@@ -50,6 +50,8 @@ body {
 .carousel {
   height: 400px;
   width: 100%; }
+  .carousel .carousel-indicators {
+    display: none; }
   .carousel .carousel-inner {
     position: absolute;
     left: 0;
