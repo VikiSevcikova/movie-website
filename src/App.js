@@ -6,14 +6,14 @@ import MovieDetails from './components/pages/MovieDetails';
 import MovieSeat from './components/pages/MovieSeat';
 import {ScrollToTop} from './components/CommonFunctions';
 
-import {HashRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import './css/App.css';
 
 function App() {
   return (
     <>
-      <HashRouter basename='/movie-website'>
+      <Router basename={process.env.PUBLIC_URL}>
         <ScrollToTop />
         <Navbar />
         <Switch>
@@ -25,7 +25,7 @@ function App() {
           <Route path='/search/' exact component={ResultPage}/>
         </Switch>
         <Footer />
-      </HashRouter>     
+      </Router>     
     </>
   );
 }
