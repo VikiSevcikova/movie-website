@@ -2,11 +2,14 @@
 
 Project was inspired by cinema websites.
 
-Specifications:
-  React
-  Bootstrap
-  SCSS
-  The MovieDB API
+Specifications: </br>
+<ul>
+<li>React</li>
+<li>React Router Dom</li>
+<li>Bootstrap</li>
+<li>SCSS</li>
+<li>The MovieDB API</li>
+</ul>
 
 In the project directory, you can run:
 
